@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SVProgressHUD
 
 class OverviewController: UITableViewController {
     
@@ -39,6 +40,9 @@ class OverviewController: UITableViewController {
         tableView.registerClass(UserCell.self, forCellReuseIdentifier: cellIdentifier)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSessionStateChanged:", name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
+
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 
         API.checkLogin() { response in
             switch response.result {
@@ -88,7 +92,9 @@ class OverviewController: UITableViewController {
         refresh()
     }
 
-    private func refresh() {
+    func refresh() {
+        refreshControl?.beginRefreshing()
+
         timeZones.removeAll()
 
         guard let currentUser = UserSession.sharedSession.currentUser else {
@@ -104,6 +110,7 @@ class OverviewController: UITableViewController {
             case .Success(let rawList):
                 self.parseUserList(rawList)
             case .Failure(let error):
+                self.refreshControl?.endRefreshing()
                 break
             }
         }
@@ -130,6 +137,8 @@ class OverviewController: UITableViewController {
 
             timeZones[timeZoneName]!.append(user)
         }
+
+        refreshControl?.endRefreshing()
 
         tableView.reloadData()
     }

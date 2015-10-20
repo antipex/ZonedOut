@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SVProgressHUD
 
 class LoginController: UIViewController {
 
@@ -34,7 +35,11 @@ class LoginController: UIViewController {
             return
         }
 
+        SVProgressHUD.showWithStatus("Logging in...", maskType: .Clear)
+
         API.login(username, password: password) { response in
+
+            SVProgressHUD.dismiss()
 
             switch response.result {
             case .Success(let rawJSON):
