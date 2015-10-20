@@ -10,6 +10,12 @@ import UIKit
 
 class UserCell: UITableViewCell {
 
+    var index: Int = 0 {
+        didSet {
+            iconView.index = index
+        }
+    }
+
     var user: User? {
         didSet {
             setupCell()

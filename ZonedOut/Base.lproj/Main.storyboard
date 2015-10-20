@@ -9,14 +9,14 @@
         <scene sceneID="Zx2-Gw-oUY">
             <objects>
                 <tableViewController id="cJP-JF-fdD" customClass="OverviewController" customModule="ZonedOut" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CoR-bU-GNc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="CoR-bU-GNc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="P1u-Dz-ieE">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P1u-Dz-ieE" id="8FB-Vm-ask">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -32,11 +32,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="cZR-Bb-huM">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="dgF-LV-Ne5">
-                            <connections>
-                                <action selector="logOut:" destination="cJP-JF-fdD" id="waT-ft-9oG"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0qs-Ud-Cgp">
                             <connections>
                                 <segue destination="fax-wd-992" kind="show" id="Qkx-NU-HOW"/>

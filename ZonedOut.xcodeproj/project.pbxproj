@@ -26,6 +26,8 @@
 		275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112E1BD6957B00D91CC9 /* String+Names.swift */; settings = {ASSET_TAGS = (); }; };
 		275D11311BD6978800D91CC9 /* AddUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11301BD6978800D91CC9 /* AddUserController.swift */; settings = {ASSET_TAGS = (); }; };
 		27D832D11BD6A9A500541267 /* ChangeZoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D01BD6A9A500541267 /* ChangeZoneController.swift */; settings = {ASSET_TAGS = (); }; };
+		27D832D41BD6BD6800541267 /* UIColor+Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D31BD6BD6800541267 /* UIColor+Constructors.swift */; settings = {ASSET_TAGS = (); }; };
+		27D832D61BD6C5E100541267 /* NSTimeZone+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D51BD6C5E100541267 /* NSTimeZone+Names.swift */; settings = {ASSET_TAGS = (); }; };
 		8D3DD9CFFCB16F69E1379011 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D7924A3A993D587B441312B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +77,8 @@
 		275D112E1BD6957B00D91CC9 /* String+Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Names.swift"; sourceTree = "<group>"; };
 		275D11301BD6978800D91CC9 /* AddUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserController.swift; sourceTree = "<group>"; };
 		27D832D01BD6A9A500541267 /* ChangeZoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeZoneController.swift; sourceTree = "<group>"; };
+		27D832D31BD6BD6800541267 /* UIColor+Constructors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Constructors.swift"; sourceTree = "<group>"; };
+		27D832D51BD6C5E100541267 /* NSTimeZone+Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeZone+Names.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				275D112E1BD6957B00D91CC9 /* String+Names.swift */,
+				27D832D31BD6BD6800541267 /* UIColor+Constructors.swift */,
+				27D832D51BD6C5E100541267 /* NSTimeZone+Names.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -406,12 +412,14 @@
 				275D112C1BD5FF2100D91CC9 /* StatusView.swift in Sources */,
 				275D10E51BD0085800D91CC9 /* OverviewController.swift in Sources */,
 				275D10E31BD0085800D91CC9 /* AppDelegate.swift in Sources */,
+				27D832D41BD6BD6800541267 /* UIColor+Constructors.swift in Sources */,
 				275D11261BD5831D00D91CC9 /* LoginController.swift in Sources */,
 				275D111C1BD17AE000D91CC9 /* UserIconView.swift in Sources */,
 				275D11171BD00AE300D91CC9 /* Constants.swift in Sources */,
 				275D111E1BD57AD200D91CC9 /* API.swift in Sources */,
 				275D11311BD6978800D91CC9 /* AddUserController.swift in Sources */,
 				275D11291BD5897800D91CC9 /* UserSession.swift in Sources */,
+				27D832D61BD6C5E100541267 /* NSTimeZone+Names.swift in Sources */,
 				27D832D11BD6A9A500541267 /* ChangeZoneController.swift in Sources */,
 				275D11241BD5810300D91CC9 /* SplashController.swift in Sources */,
 				275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */,

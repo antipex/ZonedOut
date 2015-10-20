@@ -50,6 +50,15 @@ class OverviewController: UITableViewController {
 
         navigationItem.titleView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, 44.0))
 
+        if let navigationBar = navigationController?.navigationBar {
+//            navigationBar.backgroundColor = UIColor(hex: 0x4a90e2)
+            navigationBar.tintColor = UIColor.whiteColor()
+            navigationBar.translucent = true
+            navigationBar.barTintColor = UIColor(hex: 0x235da2)
+            navigationBar.barStyle = .BlackTranslucent
+        }
+
+
         API.checkLogin() { response in
             switch response.result {
             case .Success(let rawJSON):
@@ -133,7 +142,7 @@ class OverviewController: UITableViewController {
                 continue
             }
 
-            guard let timeZoneName = user.timeZone?.name else {
+            guard let timeZoneName = user.timeZone?.displayName else {
                 continue
             }
 
@@ -180,6 +189,15 @@ class OverviewController: UITableViewController {
         }
         
         cell.user = user
+
+        var index = 1
+
+        for sectionIndex in 0..<indexPath.section {
+            index += tableView.numberOfRowsInSection(sectionIndex)
+        }
+
+        index += indexPath.row
+        cell.index = index
         
         return cell
     }

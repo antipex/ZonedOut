@@ -10,7 +10,7 @@ import UIKit
 
 class StatusView: UIView {
 
-    var iconView = UserIconView(radius: 22.0)
+    var iconView = UserIconView(radius: 16.0)
 
     var contentContainer = UIView()
     var infoLabel = UILabel()
@@ -20,6 +20,10 @@ class StatusView: UIView {
         super.init(frame: frame)
 
         infoLabel.text = "I'm Currently In".uppercaseString
+        infoLabel.font = UIFont.systemFontOfSize(10.0, weight: UIFontWeightLight)
+        infoLabel.textColor = UIColor.whiteColor()
+        timeZoneLabel.font = UIFont.systemFontOfSize(14.0, weight: UIFontWeightSemibold)
+        timeZoneLabel.textColor = UIColor.whiteColor()
 
         for subview in [iconView, contentContainer] {
             subview.translatesAutoresizingMaskIntoConstraints = false
@@ -37,13 +41,14 @@ class StatusView: UIView {
         ]
 
         let metrics = [
-            "iconSize": 44.0
+            "padding": 8.0,
+            "iconSize": 32.0
         ]
 
         let formats = [
             "H:|-[iconView(==iconSize)]-[contentContainer]-|",
-            "V:|[iconView]|",
-            "V:|[contentContainer]|"
+            "V:[iconView(==iconSize)]",
+            "V:|-(padding)-[contentContainer]-(padding)-|"
         ]
 
         for format in formats {
@@ -55,6 +60,16 @@ class StatusView: UIView {
             )
         }
 
+        addConstraint(NSLayoutConstraint(
+            item: iconView,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .CenterY,
+            multiplier: 1.0,
+            constant: 0.0)
+        )
+
         // Content container views
 
         let containerViews = [
@@ -62,17 +77,21 @@ class StatusView: UIView {
             "timeZoneLabel": timeZoneLabel
         ]
 
+        let containerMetrics = [
+            "labelSpacing": 4.0
+        ]
+
         let containerFormats = [
             "H:|[infoLabel]|",
             "H:|[timeZoneLabel]|",
-            "V:|[infoLabel]-[timeZoneLabel]|"
+            "V:|[infoLabel][timeZoneLabel]|"
         ]
 
         for format in containerFormats {
             contentContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
                 format,
                 options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: nil,
+                metrics: containerMetrics,
                 views: containerViews)
             )
         }
@@ -101,7 +120,7 @@ class StatusView: UIView {
         }
 
         iconView.nameLabel.text = currentUser.initials
-        timeZoneLabel.text = currentUser.timeZone?.name
+        timeZoneLabel.text = currentUser.timeZone?.displayName
     }
 
 }

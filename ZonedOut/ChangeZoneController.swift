@@ -17,6 +17,8 @@ class ChangeZoneController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Change Time Zone"
+
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 
         let allZones = NSTimeZone.knownTimeZoneNames()
@@ -55,9 +57,19 @@ class ChangeZoneController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
 
-        cell.accessoryType = .Checkmark
-
         let timeZone = zonesForSection(indexPath.section)[indexPath.row]
+
+        if let currentTimeZone = UserSession.sharedSession.currentUser?.timeZone {
+            if currentTimeZone.name == timeZone.name {
+                cell.accessoryType = .Checkmark
+            }
+            else {
+                cell.accessoryType = .None
+            }
+        }
+        else {
+            cell.accessoryType = .None
+        }
 
         cell.textLabel?.text = timeZone.name
 
