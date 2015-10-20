@@ -1,5 +1,5 @@
 //
-//  PersonCell.swift
+//  UserCell.swift
 //  ZonedOut
 //
 //  Created by Kyle Rohr on 15/10/2015.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class PersonCell: UITableViewCell {
+class UserCell: UITableViewCell {
 
-    var person: Person? {
+    var user: User? {
         didSet {
             setupCell()
         }
     }
     
-    var iconView = PersonIconView(name: "Unknown", radius: 22.0)
+    var iconView = UserIconView(name: "Unknown", radius: 22.0)
     var fullNameLabel = UILabel()
     
     static let PreferredHeight: CGFloat = 66.0
@@ -59,14 +59,14 @@ class PersonCell: UITableViewCell {
     }
     
     func setupCell() {
-        guard let person = person else {
+        guard let user = user else {
             return
         }
         
-        print("setupCell(): \(person)")
+        print("setupCell(): \(user)")
         
-        iconView.name = person.name ?? "Un Known"
-        fullNameLabel.text = person.name ?? "Unknown"
+        iconView.name = user.name ?? "Un Known"
+        fullNameLabel.text = user.name ?? "Unknown"
         
     }
     

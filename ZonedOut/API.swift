@@ -16,32 +16,19 @@ class API {
 
     typealias APICompletionClosure = (Response<AnyObject, NSError>) -> Void
 
-    private class func personFromRawPerson(rawPerson: AnyObject) -> Person {
-        let swiftyPerson = JSON(rawPerson)
-
-        let person = Person(
-            personId: swiftyPerson["id"].intValue,
-            username: swiftyPerson["username"].stringValue,
-            name: swiftyPerson["name"].string,
-            timeZone: swiftyPerson["timeZoneName"].string != nil ? NSTimeZone(name: swiftyPerson["timeZoneName"].stringValue) : nil
-        )
-
-        return person
-    }
-
-    class func getPerson(personId: Int, completion: APICompletionClosure?) {
-        return API.getPerson(personId, username: nil, completion: completion)
+    class func getUser(userId: Int, completion: APICompletionClosure?) {
+        return API.getUser(userId, username: nil, completion: completion)
     }
     
-    class func getPerson(username: String, completion: APICompletionClosure?) {
-        return API.getPerson(nil, username: username, completion: completion)
+    class func getUser(username: String, completion: APICompletionClosure?) {
+        return API.getUser(nil, username: username, completion: completion)
     }
 
-    class func getPerson(personId: Int?, username: String?, completion: APICompletionClosure?) {
+    class func getUser(userId: Int?, username: String?, completion: APICompletionClosure?) {
         var params = [String: AnyObject]()
         
-        if let personId = personId {
-            params["id"] = personId
+        if let userId = userId {
+            params["id"] = userId
         }
         
         if let username = username {
@@ -54,7 +41,7 @@ class API {
         }
     }
     
-    class func addPerson(username: String, password: String, name: String? = nil, timeZoneName: String? = nil, completion: APICompletionClosure?) {
+    class func addUser(username: String, password: String, name: String? = nil, timeZoneName: String? = nil, completion: APICompletionClosure?) {
         
         var params = [
             "username": username,
@@ -74,6 +61,13 @@ class API {
             completion?(response)
         }
         
+    }
+
+    class func getAllUsers(completion: APICompletionClosure?) {
+        Alamofire.request(.GET, "\(API.BaseURL)/users").responseJSON { response in
+
+            completion?(response)
+        }
     }
 
     class func checkLogin(completion: APICompletionClosure?) {

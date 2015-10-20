@@ -48,14 +48,16 @@ class LoginController: UIViewController {
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
                 else {
-                    let person = Person(rawJSON: rawJSON)
+                    let user = User(rawJSON: rawJSON)
 
-                    User.sharedUser.currentPerson = person
+                    UserSession.sharedSession.currentUser = user
 
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             case .Failure(let error):
-                break
+                let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  PersonIconView.swift
+//  UserIconView.swift
 //  ZonedOut
 //
 //  Created by Kyle Rohr on 16/10/2015.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonIconView: UIView {
+class UserIconView: UIView {
     
     var name = "Unknown" {
         didSet {

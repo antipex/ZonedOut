@@ -7,22 +7,11 @@
 //
 
 import UIKit
-
-struct TimeZone {
-    
-    var timeZone: NSTimeZone
-    var people: [Person]
-    
-    init(timeZone: NSTimeZone, people: [Person]) {
-        self.timeZone = timeZone
-        self.people = people
-    }
-    
-}
+import SwiftyJSON
 
 class OverviewController: UITableViewController {
     
-    var timeZones: [TimeZone]?
+    var timeZones = [String: [User]]()
     
     let cellIdentifier = "OverviewCell"
     
@@ -47,7 +36,7 @@ class OverviewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerClass(PersonCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.registerClass(UserCell.self, forCellReuseIdentifier: cellIdentifier)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSessionStateChanged:", name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
 
@@ -59,7 +48,7 @@ class OverviewController: UITableViewController {
                         // Not logged in yet, so show login
                         NSLog("checkLogin: Not logged in yet.")
 
-                        User.sharedUser.currentPerson = nil
+                        UserSession.sharedSession.currentUser = nil
 
                         self.showLogin()
                     }
@@ -67,9 +56,9 @@ class OverviewController: UITableViewController {
                         // Logged in already
                         NSLog("checkLogin: Already logged in.")
 
-                        let person = Person(rawJSON: rawJSON)
+                        let user = User(rawJSON: rawJSON)
 
-                        User.sharedUser.currentPerson = person
+                        UserSession.sharedSession.currentUser = user
                     }
                 }
                 else {
@@ -94,43 +83,88 @@ class OverviewController: UITableViewController {
     }
 
     func userSessionStateChanged(notification: NSNotification) {
-        print("User session changed: \(User.sharedUser.currentPerson)")
+        print("User session changed: \(UserSession.sharedSession.currentUser)")
+
+        refresh()
+    }
+
+    private func refresh() {
+        timeZones.removeAll()
+
+        guard let currentUser = UserSession.sharedSession.currentUser else {
+            title = ""
+
+            return
+        }
+
+        title = currentUser.name
+
+        API.getAllUsers() { [unowned self] response in
+            switch response.result {
+            case .Success(let rawList):
+                self.parseUserList(rawList)
+            case .Failure(let error):
+                break
+            }
+        }
+    }
+
+    private func parseUserList(rawList: AnyObject) {
+
+        let JSONList = JSON(rawList)
+
+        for (key, subJSON):(String, JSON) in JSONList {
+            let user = User(JSONUser: subJSON)
+
+            guard user.userId != UserSession.sharedSession.currentUser?.userId else {
+                continue
+            }
+
+            guard let timeZoneName = user.timeZone?.name else {
+                continue
+            }
+
+            if timeZones[timeZoneName] == nil {
+                timeZones[timeZoneName] = [User]()
+            }
+
+            timeZones[timeZoneName]!.append(user)
+        }
+
+        tableView.reloadData()
     }
     
     // MARK: UITableView
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let timeZones = timeZones else {
-            return 0
-        }
-        
-        return timeZones[section].people.count
+        let keys = Array(timeZones.keys)
+
+        return timeZones[keys[section]]?.count ?? 0
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return timeZones?.count ?? 0
+        return timeZones.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let timeZones = timeZones else {
-            return ""
-        }
-        
-        return timeZones[section].timeZone.name
+        let keys = Array(timeZones.keys)
+
+        return keys[section]
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return PersonCell.PreferredHeight
+        return UserCell.PreferredHeight
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PersonCell
-        
-        guard let person = timeZones?[indexPath.section].people[indexPath.row] else {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! UserCell
+        let keys = Array(timeZones.keys)
+
+        guard let user = timeZones[keys[indexPath.section]]?[indexPath.row] else {
             return cell
         }
         
-        cell.person = person
+        cell.user = user
         
         return cell
     }
