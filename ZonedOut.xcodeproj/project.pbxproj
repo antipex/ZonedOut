@@ -22,6 +22,7 @@
 		275D11241BD5810300D91CC9 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11231BD5810300D91CC9 /* SplashController.swift */; settings = {ASSET_TAGS = (); }; };
 		275D11261BD5831D00D91CC9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11251BD5831D00D91CC9 /* LoginController.swift */; settings = {ASSET_TAGS = (); }; };
 		275D11291BD5897800D91CC9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11281BD5897800D91CC9 /* UserSession.swift */; settings = {ASSET_TAGS = (); }; };
+		275D112C1BD5FF2100D91CC9 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112B1BD5FF2100D91CC9 /* StatusView.swift */; settings = {ASSET_TAGS = (); }; };
 		8D3DD9CFFCB16F69E1379011 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D7924A3A993D587B441312B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		275D11231BD5810300D91CC9 /* SplashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		275D11251BD5831D00D91CC9 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		275D11281BD5897800D91CC9 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		275D112B1BD5FF2100D91CC9 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			children = (
 				275D11191BD016E400D91CC9 /* UserCell.swift */,
 				275D111B1BD17AE000D91CC9 /* UserIconView.swift */,
+				275D112B1BD5FF2100D91CC9 /* StatusView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			files = (
 				275D11151BD00ACB00D91CC9 /* User.swift in Sources */,
 				275D111A1BD016E400D91CC9 /* UserCell.swift in Sources */,
+				275D112C1BD5FF2100D91CC9 /* StatusView.swift in Sources */,
 				275D10E51BD0085800D91CC9 /* OverviewController.swift in Sources */,
 				275D10E31BD0085800D91CC9 /* AppDelegate.swift in Sources */,
 				275D11261BD5831D00D91CC9 /* LoginController.swift in Sources */,

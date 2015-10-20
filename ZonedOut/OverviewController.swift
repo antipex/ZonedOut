@@ -44,6 +44,15 @@ class OverviewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 
+//        let headerView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: view.frame.size.width, height: 64.0)))
+//        headerView.backgroundColor = UIColor.lightGrayColor()
+//        tableView.tableHeaderView = headerView
+
+        navigationItem.titleView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, 44.0))
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logOut:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Change", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTimeZone:")
+
         API.checkLogin() { response in
             switch response.result {
             case .Success(let rawJSON):
@@ -176,6 +185,14 @@ class OverviewController: UITableViewController {
         cell.user = user
         
         return cell
+    }
+
+    func logOut(sender: AnyObject) {
+        API.logout() { [unowned self] response in
+            self.showLogin()
+
+            UserSession.sharedSession.currentUser = nil
+        }
     }
 
 }

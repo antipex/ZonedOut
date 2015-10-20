@@ -35,7 +35,7 @@ class LoginController: UIViewController {
             return
         }
 
-        SVProgressHUD.showWithStatus("Logging in...", maskType: .Clear)
+        SVProgressHUD.showWithStatus("Logging in...")
 
         API.login(username, password: password) { response in
 

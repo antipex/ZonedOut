@@ -88,5 +88,12 @@ class API {
             completion?(response)
         }
     }
+
+    class func logout(completion: APICompletionClosure?) {
+        Alamofire.request(.POST, "\(API.BaseURL)/user/logout").responseJSON { response in
+
+            completion?(response)
+        }
+    }
     
 }
