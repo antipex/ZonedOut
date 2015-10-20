@@ -108,6 +108,10 @@ class OverviewController: UITableViewController {
     func userSessionStateChanged(notification: NSNotification) {
         print("User session changed: \(UserSession.sharedSession.currentUser)")
 
+        if UserSession.sharedSession.currentUser == nil {
+            showLogin()
+        }
+
         refresh()
     }
 
@@ -222,14 +226,6 @@ class OverviewController: UITableViewController {
         cell.index = index
         
         return cell
-    }
-
-    @IBAction func logOut(sender: AnyObject) {
-        API.logout() { [unowned self] response in
-            self.showLogin()
-
-            UserSession.sharedSession.currentUser = nil
-        }
     }
 
     func showChangeZone() {

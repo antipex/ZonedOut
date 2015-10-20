@@ -5,6 +5,48 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Account-->
+        <scene sceneID="ngd-ei-LvG">
+            <objects>
+                <tableViewController title="Account" id="8qH-bC-slK" customClass="AccountController" customModule="ZonedOut" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="hqg-bU-j8B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Rs6-Dg-2Lm" style="IBUITableViewCellStyleDefault" id="7rl-hw-Twi">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rl-hw-Twi" id="4ek-Mk-lIy">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Log Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rs6-Dg-2Lm">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="8qH-bC-slK" id="HNm-jk-e3h"/>
+                            <outlet property="delegate" destination="8qH-bC-slK" id="Yeb-bw-UaB"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pMn-Gf-gN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1211" y="-259"/>
+        </scene>
         <!--Overview Controller-->
         <scene sceneID="Zx2-Gw-oUY">
             <objects>
@@ -32,7 +74,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="cZR-Bb-huM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0qs-Ud-Cgp"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0qs-Ud-Cgp">
+                            <connections>
+                                <segue destination="8qH-bC-slK" kind="show" id="Bt3-p7-oGz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="6Ec-iw-Tsx" kind="presentation" identifier="showSplash" modalTransitionStyle="crossDissolve" id="ExX-U4-nYL"/>
