@@ -16,7 +16,7 @@ class UserCell: UITableViewCell {
         }
     }
     
-    var iconView = UserIconView(name: "Unknown", radius: 22.0)
+    var iconView = UserIconView(radius: 22.0)
     var fullNameLabel = UILabel()
     
     static let PreferredHeight: CGFloat = 66.0
@@ -63,10 +63,8 @@ class UserCell: UITableViewCell {
             return
         }
         
-        print("setupCell(): \(user)")
-        
-        iconView.name = user.name ?? "Un Known"
-        fullNameLabel.text = user.name ?? "Unknown"
+        iconView.nameLabel.text = user.initials
+        fullNameLabel.text = user.fullName
         
     }
     

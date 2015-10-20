@@ -10,25 +10,20 @@ import UIKit
 
 class UserIconView: UIView {
     
-    var name = "Unknown" {
-        didSet {
-            // Format the name label correctly
-            nameLabel.text = name.substringToIndex(name.startIndex)
-        }
-    }
-    
     var nameLabel = UILabel()
 
-    init(name: String, radius: CGFloat) {
+    init(radius: CGFloat) {
         super.init(frame: CGRectZero)
-        
-        self.name = name
+
+        nameLabel.text = "UN"
         
         // UI setup
-        backgroundColor = UIColor.grayColor()
+        backgroundColor = UIColor.lightGrayColor()
         layer.cornerRadius = radius
         
-        nameLabel.font = UIFont.systemFontOfSize(16.0, weight: 2.0)
+        nameLabel.font = UIFont.systemFontOfSize(18.0, weight: 2.0)
+        nameLabel.textColor = UIColor.darkGrayColor()
+        nameLabel.textAlignment = .Center
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameLabel)
         

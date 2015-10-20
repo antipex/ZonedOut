@@ -112,7 +112,7 @@ class OverviewController: UITableViewController {
             return
         }
 
-        title = currentUser.name
+//        title = currentUser.fullName
 
         API.getAllUsers() { [unowned self] response in
             switch response.result {

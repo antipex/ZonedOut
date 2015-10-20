@@ -10,7 +10,7 @@ import UIKit
 
 class StatusView: UIView {
 
-    var iconView = UserIconView(name: "Unknown", radius: 22.0)
+    var iconView = UserIconView(radius: 22.0)
 
     var contentContainer = UIView()
     var infoLabel = UILabel()
@@ -94,13 +94,13 @@ class StatusView: UIView {
 
     func refresh() {
         guard let currentUser = UserSession.sharedSession.currentUser else {
-            iconView.name = "Unknown"
+            iconView.nameLabel.text = "UN"
             timeZoneLabel.text = ""
 
             return
         }
 
-        iconView.name = currentUser.name ?? "Unknown"
+        iconView.nameLabel.text = currentUser.initials
         timeZoneLabel.text = currentUser.timeZone?.name
     }
 

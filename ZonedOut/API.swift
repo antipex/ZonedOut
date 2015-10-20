@@ -41,16 +41,15 @@ class API {
         }
     }
     
-    class func addUser(username: String, password: String, name: String? = nil, timeZoneName: String? = nil, completion: APICompletionClosure?) {
+    class func addUser(username: String, password: String, email: String, firstName: String, lastName: String, timeZoneName: String? = nil, completion: APICompletionClosure?) {
         
         var params = [
             "username": username,
-            "password": password
+            "password": password,
+            "email": email,
+            "firstName": firstName,
+            "lastName": lastName
         ]
-        
-        if let name = name {
-            params["name"] = name
-        }
         
         if let timeZoneName = timeZoneName {
             params["timeZoneName"] = timeZoneName

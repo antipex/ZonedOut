@@ -13,18 +13,33 @@ class User: NSObject {
     
     var userId: Int
     var username: String
-    var name: String?
+    var email: String
+    var firstName: String
+    var lastName: String
     var timeZone: NSTimeZone?
-    
-    override var description: String {
-        return "<User username=\(username), name=\(name), timeZone=\(timeZone?.name)>"
+
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+
+    var initials: String {
+        let firstInitial = firstName.firstCharacter
+        let secondInitial = lastName.firstCharacter
+
+        return "\(firstInitial)\(secondInitial)"
     }
     
-    init(userId: Int, username: String, name: String?, timeZone: NSTimeZone?) {
+    override var description: String {
+        return "<User username=\(username), name=\(fullName), timeZone=\(timeZone?.name)>"
+    }
+    
+    init(userId: Int, username: String, email: String, firstName: String, lastName: String, timeZone: NSTimeZone?) {
         print("id: \(userId), username: \(username)")
         self.userId = userId
         self.username = username
-        self.name = name
+        self.email = email
+        self.firstName = firstName
+        self.lastName = lastName
         self.timeZone = timeZone
         
         super.init()
@@ -39,7 +54,9 @@ class User: NSObject {
     init(JSONUser: JSON) {
         userId = JSONUser["id"].intValue
         username = JSONUser["username"].stringValue
-        name = JSONUser["name"].string
+        email = JSONUser["email"].stringValue
+        firstName = JSONUser["firstName"].stringValue
+        lastName = JSONUser["lastName"].stringValue
         timeZone = JSONUser["timeZoneName"].string != nil ? NSTimeZone(name: JSONUser["timeZoneName"].stringValue) : nil
 
         super.init()

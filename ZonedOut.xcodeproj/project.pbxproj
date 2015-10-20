@@ -23,6 +23,7 @@
 		275D11261BD5831D00D91CC9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11251BD5831D00D91CC9 /* LoginController.swift */; settings = {ASSET_TAGS = (); }; };
 		275D11291BD5897800D91CC9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11281BD5897800D91CC9 /* UserSession.swift */; settings = {ASSET_TAGS = (); }; };
 		275D112C1BD5FF2100D91CC9 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112B1BD5FF2100D91CC9 /* StatusView.swift */; settings = {ASSET_TAGS = (); }; };
+		275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112E1BD6957B00D91CC9 /* String+Names.swift */; settings = {ASSET_TAGS = (); }; };
 		8D3DD9CFFCB16F69E1379011 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D7924A3A993D587B441312B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		275D11251BD5831D00D91CC9 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		275D11281BD5897800D91CC9 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		275D112B1BD5FF2100D91CC9 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		275D112E1BD6957B00D91CC9 /* String+Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Names.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 		275D10E11BD0085800D91CC9 /* ZonedOut */ = {
 			isa = PBXGroup;
 			children = (
+				275D112D1BD6956100D91CC9 /* Extensions */,
 				275D11181BD016D300D91CC9 /* Views */,
 				275D11131BD00A9D00D91CC9 /* Models */,
 				275D11121BD00A9000D91CC9 /* View Controllers */,
@@ -181,6 +184,14 @@
 				275D112B1BD5FF2100D91CC9 /* StatusView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		275D112D1BD6956100D91CC9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				275D112E1BD6957B00D91CC9 /* String+Names.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		C548BE832718448950F8DFFE /* Frameworks */ = {
@@ -395,6 +406,7 @@
 				275D111E1BD57AD200D91CC9 /* API.swift in Sources */,
 				275D11291BD5897800D91CC9 /* UserSession.swift in Sources */,
 				275D11241BD5810300D91CC9 /* SplashController.swift in Sources */,
+				275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
