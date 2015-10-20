@@ -54,6 +54,10 @@ class ChangeZoneController: UITableViewController {
         return zonesForSection(section).count
     }
 
+//    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+//        return Array(timeZones.keys)
+//    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
 
