@@ -62,6 +62,17 @@ class API {
         
     }
 
+    class func updateUserTimeZone(user: User, timeZone: NSTimeZone, completion: APICompletionClosure?) {
+        let params = [
+            "timeZoneName": timeZone.name
+        ]
+
+        Alamofire.request(.PUT, "\(API.BaseURL)/user/\(user.userId)", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+
+            completion?(response)
+        }
+    }
+
     class func getAllUsers(completion: APICompletionClosure?) {
         Alamofire.request(.GET, "\(API.BaseURL)/users").responseJSON { response in
 

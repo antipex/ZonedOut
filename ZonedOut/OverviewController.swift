@@ -50,9 +50,6 @@ class OverviewController: UITableViewController {
 
         navigationItem.titleView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, 44.0))
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logOut:")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Change", style: UIBarButtonItemStyle.Plain, target: self, action: "changeTimeZone:")
-
         API.checkLogin() { response in
             switch response.result {
             case .Success(let rawJSON):
@@ -187,7 +184,7 @@ class OverviewController: UITableViewController {
         return cell
     }
 
-    func logOut(sender: AnyObject) {
+    @IBAction func logOut(sender: AnyObject) {
         API.logout() { [unowned self] response in
             self.showLogin()
 

@@ -26,6 +26,18 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBarHidden = true
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        navigationController?.navigationBarHidden = false
+    }
+
     @IBAction func attemptLogin() {
         guard let usernameField = usernameField, let passwordField = passwordField else {
             return
