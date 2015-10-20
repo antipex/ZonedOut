@@ -48,7 +48,11 @@ class OverviewController: UITableViewController {
 //        headerView.backgroundColor = UIColor.lightGrayColor()
 //        tableView.tableHeaderView = headerView
 
-        navigationItem.titleView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, 44.0))
+        let statusView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, navigationController!.navigationBar.frame.size.height))
+        navigationItem.titleView = statusView
+        statusView.tapHandler = { [unowned self] in
+            self.showChangeZone()
+        }
 
         if let navigationBar = navigationController?.navigationBar {
 //            navigationBar.backgroundColor = UIColor(hex: 0x4a90e2)
@@ -179,6 +183,24 @@ class OverviewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UserCell.PreferredHeight
     }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let keys = Array(timeZones.keys)
+
+        let zoneName = keys[section]
+        let zone = NSTimeZone(name: zoneName.stringByReplacingOccurrencesOfString(" ", withString: "_"))!
+
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "EEE, h:mm a"
+        formatter.timeZone = zone
+        let formattedDate = formatter.stringFromDate(NSDate())
+
+        let headerView = OverviewHeaderView(frame: CGRectZero)
+        headerView.titleLabel.text = zoneName
+        headerView.timeLabel.text = formattedDate
+
+        return headerView
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! UserCell
@@ -208,6 +230,10 @@ class OverviewController: UITableViewController {
 
             UserSession.sharedSession.currentUser = nil
         }
+    }
+
+    func showChangeZone() {
+        performSegueWithIdentifier("showChangeZone", sender: self)
     }
 
 }

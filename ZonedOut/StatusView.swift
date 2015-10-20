@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol StatusViewDelegate {
+    func statusViewDidTap(statusView: StatusView)
+}
+
 class StatusView: UIView {
 
     var iconView = UserIconView(radius: 16.0)
@@ -16,8 +20,14 @@ class StatusView: UIView {
     var infoLabel = UILabel()
     var timeZoneLabel = UILabel()
 
+    var tapGesture = UITapGestureRecognizer()
+
+    var tapHandler: (() -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        userInteractionEnabled = true
 
         infoLabel.text = "I'm Currently In".uppercaseString
         infoLabel.font = UIFont.systemFontOfSize(10.0, weight: UIFontWeightLight)
@@ -97,6 +107,10 @@ class StatusView: UIView {
         }
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSessionStateChanged:", name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
+
+        tapGesture = UITapGestureRecognizer(target: self, action: "tappedStatusView:")
+
+        addGestureRecognizer(tapGesture)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -105,6 +119,8 @@ class StatusView: UIView {
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+
+        removeGestureRecognizer(tapGesture)
     }
 
     func userSessionStateChanged(notification: NSNotification) {
@@ -121,6 +137,10 @@ class StatusView: UIView {
 
         iconView.nameLabel.text = currentUser.initials
         timeZoneLabel.text = currentUser.timeZone?.displayName
+    }
+
+    func tappedStatusView(recognizer: UITapGestureRecognizer) {
+        tapHandler?()
     }
 
 }

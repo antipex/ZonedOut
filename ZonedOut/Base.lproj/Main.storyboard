@@ -32,15 +32,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="cZR-Bb-huM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0qs-Ud-Cgp">
-                            <connections>
-                                <segue destination="fax-wd-992" kind="show" id="Qkx-NU-HOW"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0qs-Ud-Cgp"/>
                     </navigationItem>
                     <connections>
                         <segue destination="6Ec-iw-Tsx" kind="presentation" identifier="showSplash" modalTransitionStyle="crossDissolve" id="ExX-U4-nYL"/>
                         <segue destination="QBV-XY-KE7" kind="presentation" identifier="showLogin" modalTransitionStyle="crossDissolve" id="hQE-Z9-X0d"/>
+                        <segue destination="fax-wd-992" kind="show" identifier="showChangeZone" id="bcr-JG-jBB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4d-TG-4sy" userLabel="First Responder" sceneMemberID="firstResponder"/>

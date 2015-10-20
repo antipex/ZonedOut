@@ -35,7 +35,7 @@ class UserIconView: UIView {
         layer.cornerRadius = radius
         
         nameLabel.font = UIFont.systemFontOfSize(0.81 * radius, weight: UIFontWeightBold)
-        nameLabel.textColor = UIColor.darkGrayColor()
+        nameLabel.textColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.8)
         nameLabel.textAlignment = .Center
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameLabel)
@@ -63,7 +63,6 @@ class UserIconView: UIView {
     }
 
     func refreshBackgroundColor() {
-        print(index % 3)
         backgroundColor = backgroundColours[index % 3]
     }
 
