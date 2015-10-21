@@ -18,20 +18,7 @@ class OverviewController: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-//        let peopleOne = [
-//            Person(name: "Famanda Ritz", timeZone: NSTimeZone(name: "America/Los_Angeles")!),
-//            Person(name: "Harlie Cales", timeZone: NSTimeZone(name: "America/Los_Angeles")!)
-//        ]
-//        
-//        let peopleTwo = [
-//            Person(name: "Bob Gunderson", timeZone: NSTimeZone(name: "America/Montreal")!)
-//        ]
-//        
-//        timeZones = [
-//            TimeZone(timeZone: NSTimeZone(name: "America/Los_Angeles")!, people: peopleOne),
-//            TimeZone(timeZone: NSTimeZone(name: "America/Montreal")!, people: peopleTwo)
-//        ]
+
     }
 
     override func viewDidLoad() {
@@ -44,26 +31,21 @@ class OverviewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 
-//        let headerView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: view.frame.size.width, height: 64.0)))
-//        headerView.backgroundColor = UIColor.lightGrayColor()
-//        tableView.tableHeaderView = headerView
-
         let statusView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, navigationController!.navigationBar.frame.size.height))
+        statusView.autoresizingMask = [.FlexibleWidth]
         navigationItem.titleView = statusView
         statusView.tapHandler = { [unowned self] in
             self.showChangeZone()
         }
 
         if let navigationBar = navigationController?.navigationBar {
-//            navigationBar.backgroundColor = UIColor(hex: 0x4a90e2)
             navigationBar.tintColor = UIColor.whiteColor()
             navigationBar.translucent = true
             navigationBar.barTintColor = UIColor(hex: 0x235da2)
             navigationBar.barStyle = .BlackTranslucent
         }
 
-
-        API.checkLogin() { response in
+        API.checkLogin() { [unowned self] response in
             switch response.result {
             case .Success(let rawJSON):
                 if let statusCode = response.response?.statusCode {
@@ -88,12 +70,11 @@ class OverviewController: UITableViewController {
                     self.showLogin()
                 }
             case .Failure(let error):
-                break
+                let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-
         }
-        
-
     }
 
     private func showLogin() {
@@ -106,8 +87,6 @@ class OverviewController: UITableViewController {
     }
 
     func userSessionStateChanged(notification: NSNotification) {
-        print("User session changed: \(UserSession.sharedSession.currentUser)")
-
         if UserSession.sharedSession.currentUser == nil {
             showLogin()
         }
@@ -126,15 +105,16 @@ class OverviewController: UITableViewController {
             return
         }
 
-//        title = currentUser.fullName
-
         API.getAllUsers() { [unowned self] response in
             switch response.result {
             case .Success(let rawList):
                 self.parseUserList(rawList)
             case .Failure(let error):
                 self.refreshControl?.endRefreshing()
-                break
+
+                let alert = UIAlertController(title: "Error Loading Users", message: error.localizedDescription, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
@@ -215,6 +195,7 @@ class OverviewController: UITableViewController {
         }
         
         cell.user = user
+        cell.selectionStyle = .None
 
         var index = 1
 

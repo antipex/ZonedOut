@@ -18,10 +18,12 @@ class User: NSObject {
     var lastName: String
     var timeZone: NSTimeZone?
 
+    /// First and last name separated by a space
     var fullName: String {
         return "\(firstName) \(lastName)"
     }
 
+    /// Capital initials based on first character of first and last names
     var initials: String {
         let firstInitial = firstName.firstCharacter
         let secondInitial = lastName.firstCharacter
@@ -50,7 +52,7 @@ class User: NSObject {
 
         self.init(JSONUser: JSONUser)
     }
-
+    
     init(JSONUser: JSON) {
         userId = JSONUser["id"].intValue
         username = JSONUser["username"].stringValue

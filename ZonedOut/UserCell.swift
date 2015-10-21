@@ -29,7 +29,9 @@ class UserCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
+        // Auto Layout
+
         for view in [iconView, fullNameLabel] {
             view.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(view)
@@ -68,6 +70,8 @@ class UserCell: UITableViewCell {
         guard let user = user else {
             return
         }
+
+        // Update labels
         
         iconView.nameLabel.text = user.initials
         fullNameLabel.text = user.fullName

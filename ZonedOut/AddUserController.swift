@@ -20,7 +20,11 @@ class AddUserController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.barTintColor = UIColor(hex: 0x235da2)
+            navigationBar.barStyle = .BlackTranslucent
+            navigationBar.tintColor = UIColor.whiteColor()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,18 +53,9 @@ class AddUserController: UIViewController {
             case .Failure(let error):
                 let alert = UIAlertController(title: "Error Creating Account", message: error.localizedDescription, preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

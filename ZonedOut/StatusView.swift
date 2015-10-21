@@ -35,6 +35,8 @@ class StatusView: UIView {
         timeZoneLabel.font = UIFont.systemFontOfSize(14.0, weight: UIFontWeightSemibold)
         timeZoneLabel.textColor = UIColor.whiteColor()
 
+        // Auto Layout
+
         for subview in [iconView, contentContainer] {
             subview.translatesAutoresizingMaskIntoConstraints = false
             addSubview(subview)

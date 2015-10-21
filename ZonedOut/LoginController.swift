@@ -17,8 +17,11 @@ class LoginController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        for field in [usernameField!, passwordField!] {
+            field.backgroundColor = UIColor.whiteColor()
+            field.layer.cornerRadius = 3.0
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,16 +81,5 @@ class LoginController: UIViewController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

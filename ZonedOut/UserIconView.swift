@@ -12,6 +12,7 @@ class UserIconView: UIView {
     
     var nameLabel = UILabel()
 
+    // Preset background colours
     let backgroundColours = [
         UIColor(hex: 0x7ed321),
         UIColor(hex: 0xf5a623),
@@ -63,7 +64,8 @@ class UserIconView: UIView {
     }
 
     func refreshBackgroundColor() {
-        backgroundColor = backgroundColours[index % 3]
+        // Rotate background colour based on the item index
+        backgroundColor = backgroundColours[index % backgroundColours.count]
     }
 
 }
