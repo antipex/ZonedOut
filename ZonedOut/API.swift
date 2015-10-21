@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class API {
 
-    static let BaseURL = "http://localhost/~kyle/zoned-out-api"
+    static let BaseURL = "http://zonedout.antipex.com"
 
     typealias APICompletionClosure = (Response<AnyObject, NSError>) -> Void
 

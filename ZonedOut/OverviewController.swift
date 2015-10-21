@@ -70,9 +70,11 @@ class OverviewController: UITableViewController {
                     self.showLogin()
                 }
             case .Failure(let error):
-                let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.showLogin()
+
+                //let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: .Alert)
+                //alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                //self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
