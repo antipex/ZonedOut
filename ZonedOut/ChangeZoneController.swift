@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ChangeZoneController: UITableViewController {
 
@@ -93,7 +94,8 @@ class ChangeZoneController: UITableViewController {
 
                 self.navigationController?.popViewControllerAnimated(true)
             case .Failure(let error):
-                break
+                SVProgressHUD.showErrorWithStatus("An error occurred while updating the time zone.")
+                print("Error updating time zone: \(error.localizedDescription)")
             }
         }
     }

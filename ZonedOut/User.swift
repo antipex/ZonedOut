@@ -34,9 +34,20 @@ class User: NSObject {
     override var description: String {
         return "<User username=\(username), name=\(fullName), timeZone=\(timeZone?.name)>"
     }
-    
+
+    /**
+     Init a new `User` with specified properties
+
+     - parameter userId:    User ID
+     - parameter username:  Username
+     - parameter email:     Email address
+     - parameter firstName: First name
+     - parameter lastName:  Last name
+     - parameter timeZone:  Time zone
+
+     - returns: A new instance of `User`
+     */
     init(userId: Int, username: String, email: String, firstName: String, lastName: String, timeZone: NSTimeZone?) {
-        print("id: \(userId), username: \(username)")
         self.userId = userId
         self.username = username
         self.email = email
@@ -47,12 +58,26 @@ class User: NSObject {
         super.init()
     }
 
+    /**
+     Init a new `User` with a raw JSON dictionary
+
+     - parameter rawJSON: JSON dictionary
+
+     - returns: A new instance of `User`
+     */
     convenience init(rawJSON: AnyObject) {
         let JSONUser = JSON(rawJSON)
 
         self.init(JSONUser: JSONUser)
     }
-    
+
+    /**
+     Init a new `User` with a prepopulated JSON object
+
+     - parameter JSONUser: JSON object
+
+     - returns: A new instance of `User`
+     */
     init(JSONUser: JSON) {
         userId = JSONUser["id"].intValue
         username = JSONUser["username"].stringValue

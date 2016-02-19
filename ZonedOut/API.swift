@@ -12,18 +12,38 @@ import SwiftyJSON
 
 class API {
 
+    /// Base URL for API requests without trailing slash
     static let BaseURL = "http://zonedout.antipex.com"
 
     typealias APICompletionClosure = (Response<AnyObject, NSError>) -> Void
 
+    /**
+     Fetch a user account by ID
+
+     - parameter userId:     User ID to fetch
+     - parameter completion: `APICompletionClosure`
+     */
     class func getUser(userId: Int, completion: APICompletionClosure?) {
         return API.getUser(userId, username: nil, completion: completion)
     }
-    
+
+    /**
+     Fetch a user account by username
+
+     - parameter username:   Username to fetch
+     - parameter completion: `APICompletionClosure`
+     */
     class func getUser(username: String, completion: APICompletionClosure?) {
         return API.getUser(nil, username: username, completion: completion)
     }
 
+    /**
+     Fetch a user by user ID or username
+
+     - parameter userId:     User ID to fetch
+     - parameter username:   Username to fetch
+     - parameter completion: `APICompletionClosure`
+     */
     class func getUser(userId: Int?, username: String?, completion: APICompletionClosure?) {
         var params = [String: AnyObject]()
         
@@ -40,7 +60,18 @@ class API {
             completion?(response)
         }
     }
-    
+
+    /**
+     Add a new user account
+
+     - parameter username:     Desired username
+     - parameter password:     Password
+     - parameter email:        Email address
+     - parameter firstName:    First name
+     - parameter lastName:     Last name
+     - parameter timeZoneName: Time zone name
+     - parameter completion:   `APICompletionClosure`
+     */
     class func addUser(username: String, password: String, email: String, firstName: String, lastName: String, timeZoneName: String? = nil, completion: APICompletionClosure?) {
         
         var params = [
@@ -62,6 +93,13 @@ class API {
         
     }
 
+    /**
+     Update a user's time zone
+
+     - parameter user:       `User` to update
+     - parameter timeZone:   New time zone
+     - parameter completion: `APICompletionClosure`
+     */
     class func updateUserTimeZone(user: User, timeZone: NSTimeZone, completion: APICompletionClosure?) {
         let params = [
             "timeZoneName": timeZone.name
@@ -73,6 +111,11 @@ class API {
         }
     }
 
+    /**
+     Get all user accounts
+
+     - parameter completion: `APICompletionClosure`
+     */
     class func getAllUsers(completion: APICompletionClosure?) {
         Alamofire.request(.GET, "\(API.BaseURL)/users").responseJSON { response in
 
@@ -80,6 +123,11 @@ class API {
         }
     }
 
+    /**
+     Check to see if a user is logged in
+
+     - parameter completion: `APICompletionClosure`
+     */
     class func checkLogin(completion: APICompletionClosure?) {
         Alamofire.request(.GET, "\(API.BaseURL)/user").responseJSON { response in
 
@@ -87,6 +135,13 @@ class API {
         }
     }
 
+    /**
+     Log in a user
+
+     - parameter username:   Username
+     - parameter password:   Password
+     - parameter completion: `APICompletionClosure`
+     */
     class func login(username: String, password: String, completion: APICompletionClosure?) {
         let params = [
             "username": username,
@@ -99,6 +154,11 @@ class API {
         }
     }
 
+    /**
+     Log out the currently logged-in user
+
+     - parameter completion: `APICompletionClosure`
+     */
     class func logout(completion: APICompletionClosure?) {
         Alamofire.request(.POST, "\(API.BaseURL)/user/logout").responseJSON { response in
 

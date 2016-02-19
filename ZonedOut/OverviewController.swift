@@ -69,7 +69,7 @@ class OverviewController: UITableViewController {
                 else {
                     self.showLogin()
                 }
-            case .Failure(let error):
+            case .Failure:
                 self.showLogin()
 
                 //let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: .Alert)
@@ -101,7 +101,7 @@ class OverviewController: UITableViewController {
 
         timeZones.removeAll()
 
-        guard let currentUser = UserSession.sharedSession.currentUser else {
+        guard let _ = UserSession.sharedSession.currentUser else {
             title = ""
 
             return
@@ -125,7 +125,7 @@ class OverviewController: UITableViewController {
 
         let JSONList = JSON(rawList)
 
-        for (key, subJSON):(String, JSON) in JSONList {
+        for (_, subJSON):(String, JSON) in JSONList {
             let user = User(JSONUser: subJSON)
 
             guard user.userId != UserSession.sharedSession.currentUser?.userId else {
