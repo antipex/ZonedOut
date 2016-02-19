@@ -10,6 +10,7 @@ import UIKit
 
 extension String {
 
+    /// Returns the first character of the String
     var firstCharacter: String {
         return self.substringToIndex(self.startIndex.advancedBy(1))
     }

@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIColor {
+
     convenience init(hex:Int, alpha:CGFloat) {
         let red = CGFloat(((hex >> 16) & 0xFF)) / 255.0
         let green = CGFloat(((hex >> 8) & 0xFF)) / 255.0
@@ -20,4 +21,5 @@ extension UIColor {
     convenience init(hex:Int) {
         self.init(hex:hex, alpha:1.0)
     }
+    
 }

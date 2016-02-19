@@ -10,6 +10,7 @@ import UIKit
 
 extension NSTimeZone {
 
+    /// Returns the time zone name formatted with spaces instead of underscores
     var displayName: String {
         return name.stringByReplacingOccurrencesOfString("_", withString: " ")
     }
