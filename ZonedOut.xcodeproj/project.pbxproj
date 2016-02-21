@@ -14,22 +14,24 @@
 		275D10ED1BD0085800D91CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275D10EB1BD0085800D91CC9 /* LaunchScreen.storyboard */; };
 		275D10F81BD0085800D91CC9 /* ZonedOutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D10F71BD0085800D91CC9 /* ZonedOutTests.swift */; };
 		275D11031BD0085800D91CC9 /* ZonedOutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11021BD0085800D91CC9 /* ZonedOutUITests.swift */; };
-		275D11151BD00ACB00D91CC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11141BD00ACB00D91CC9 /* User.swift */; settings = {ASSET_TAGS = (); }; };
-		275D11171BD00AE300D91CC9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11161BD00AE300D91CC9 /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
-		275D111A1BD016E400D91CC9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11191BD016E400D91CC9 /* UserCell.swift */; settings = {ASSET_TAGS = (); }; };
-		275D111C1BD17AE000D91CC9 /* UserIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D111B1BD17AE000D91CC9 /* UserIconView.swift */; settings = {ASSET_TAGS = (); }; };
-		275D111E1BD57AD200D91CC9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D111D1BD57AD200D91CC9 /* API.swift */; settings = {ASSET_TAGS = (); }; };
-		275D11261BD5831D00D91CC9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11251BD5831D00D91CC9 /* LoginController.swift */; settings = {ASSET_TAGS = (); }; };
-		275D11291BD5897800D91CC9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11281BD5897800D91CC9 /* UserSession.swift */; settings = {ASSET_TAGS = (); }; };
-		275D112C1BD5FF2100D91CC9 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112B1BD5FF2100D91CC9 /* StatusView.swift */; settings = {ASSET_TAGS = (); }; };
-		275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112E1BD6957B00D91CC9 /* String+Names.swift */; settings = {ASSET_TAGS = (); }; };
-		275D11311BD6978800D91CC9 /* AddUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11301BD6978800D91CC9 /* AddUserController.swift */; settings = {ASSET_TAGS = (); }; };
-		27D832D11BD6A9A500541267 /* ChangeZoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D01BD6A9A500541267 /* ChangeZoneController.swift */; settings = {ASSET_TAGS = (); }; };
-		27D832D41BD6BD6800541267 /* UIColor+Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D31BD6BD6800541267 /* UIColor+Constructors.swift */; settings = {ASSET_TAGS = (); }; };
-		27D832D61BD6C5E100541267 /* NSTimeZone+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D51BD6C5E100541267 /* NSTimeZone+Names.swift */; settings = {ASSET_TAGS = (); }; };
-		27D832D81BD6C83400541267 /* OverviewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D71BD6C83400541267 /* OverviewHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
-		27D832DA1BD6D46900541267 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D91BD6D46900541267 /* AccountController.swift */; settings = {ASSET_TAGS = (); }; };
-		27D832DC1BD70DBE00541267 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832DB1BD70DBE00541267 /* BlueButton.swift */; settings = {ASSET_TAGS = (); }; };
+		275D11151BD00ACB00D91CC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11141BD00ACB00D91CC9 /* User.swift */; };
+		275D11171BD00AE300D91CC9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11161BD00AE300D91CC9 /* Constants.swift */; };
+		275D111A1BD016E400D91CC9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11191BD016E400D91CC9 /* UserCell.swift */; };
+		275D111C1BD17AE000D91CC9 /* UserIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D111B1BD17AE000D91CC9 /* UserIconView.swift */; };
+		275D111E1BD57AD200D91CC9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D111D1BD57AD200D91CC9 /* API.swift */; };
+		275D11261BD5831D00D91CC9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11251BD5831D00D91CC9 /* LoginController.swift */; };
+		275D11291BD5897800D91CC9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11281BD5897800D91CC9 /* UserSession.swift */; };
+		275D112C1BD5FF2100D91CC9 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112B1BD5FF2100D91CC9 /* StatusView.swift */; };
+		275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D112E1BD6957B00D91CC9 /* String+Names.swift */; };
+		275D11311BD6978800D91CC9 /* EditUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D11301BD6978800D91CC9 /* EditUserController.swift */; };
+		27D832D11BD6A9A500541267 /* ChangeZoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D01BD6A9A500541267 /* ChangeZoneController.swift */; };
+		27D832D41BD6BD6800541267 /* UIColor+Constructors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D31BD6BD6800541267 /* UIColor+Constructors.swift */; };
+		27D832D61BD6C5E100541267 /* NSTimeZone+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D51BD6C5E100541267 /* NSTimeZone+Names.swift */; };
+		27D832D81BD6C83400541267 /* OverviewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D71BD6C83400541267 /* OverviewHeaderView.swift */; };
+		27D832DA1BD6D46900541267 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832D91BD6D46900541267 /* AccountController.swift */; };
+		27D832DC1BD70DBE00541267 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D832DB1BD70DBE00541267 /* BlueButton.swift */; };
+		27DF04121C7A326F00AC938C /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF04111C7A326F00AC938C /* TextFieldCell.swift */; };
+		27DF04141C7A371A00AC938C /* AddUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF04131C7A371A00AC938C /* AddUserController.swift */; };
 		8D3DD9CFFCB16F69E1379011 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D7924A3A993D587B441312B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,13 +78,15 @@
 		275D11281BD5897800D91CC9 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		275D112B1BD5FF2100D91CC9 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		275D112E1BD6957B00D91CC9 /* String+Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Names.swift"; sourceTree = "<group>"; };
-		275D11301BD6978800D91CC9 /* AddUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserController.swift; sourceTree = "<group>"; };
+		275D11301BD6978800D91CC9 /* EditUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserController.swift; sourceTree = "<group>"; };
 		27D832D01BD6A9A500541267 /* ChangeZoneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeZoneController.swift; sourceTree = "<group>"; };
 		27D832D31BD6BD6800541267 /* UIColor+Constructors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Constructors.swift"; sourceTree = "<group>"; };
 		27D832D51BD6C5E100541267 /* NSTimeZone+Names.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeZone+Names.swift"; sourceTree = "<group>"; };
 		27D832D71BD6C83400541267 /* OverviewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewHeaderView.swift; sourceTree = "<group>"; };
 		27D832D91BD6D46900541267 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		27D832DB1BD70DBE00541267 /* BlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
+		27DF04111C7A326F00AC938C /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		27DF04131C7A371A00AC938C /* AddUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,9 +178,10 @@
 			children = (
 				275D10E41BD0085800D91CC9 /* OverviewController.swift */,
 				275D11251BD5831D00D91CC9 /* LoginController.swift */,
-				275D11301BD6978800D91CC9 /* AddUserController.swift */,
+				275D11301BD6978800D91CC9 /* EditUserController.swift */,
 				27D832D01BD6A9A500541267 /* ChangeZoneController.swift */,
 				27D832D91BD6D46900541267 /* AccountController.swift */,
+				27DF04131C7A371A00AC938C /* AddUserController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				275D112B1BD5FF2100D91CC9 /* StatusView.swift */,
 				27D832D71BD6C83400541267 /* OverviewHeaderView.swift */,
 				27D832DB1BD70DBE00541267 /* BlueButton.swift */,
+				27DF04111C7A326F00AC938C /* TextFieldCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -424,12 +430,14 @@
 				27D832DC1BD70DBE00541267 /* BlueButton.swift in Sources */,
 				275D111C1BD17AE000D91CC9 /* UserIconView.swift in Sources */,
 				275D11171BD00AE300D91CC9 /* Constants.swift in Sources */,
+				27DF04121C7A326F00AC938C /* TextFieldCell.swift in Sources */,
 				275D111E1BD57AD200D91CC9 /* API.swift in Sources */,
-				275D11311BD6978800D91CC9 /* AddUserController.swift in Sources */,
+				275D11311BD6978800D91CC9 /* EditUserController.swift in Sources */,
 				275D11291BD5897800D91CC9 /* UserSession.swift in Sources */,
 				27D832D61BD6C5E100541267 /* NSTimeZone+Names.swift in Sources */,
 				27D832D11BD6A9A500541267 /* ChangeZoneController.swift in Sources */,
 				27D832DA1BD6D46900541267 /* AccountController.swift in Sources */,
+				27DF04141C7A371A00AC938C /* AddUserController.swift in Sources */,
 				275D112F1BD6957B00D91CC9 /* String+Names.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
