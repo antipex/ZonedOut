@@ -12,31 +12,46 @@ class AccountController: UITableViewController {
 
     let cellIdentifier = "accountCell"
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    // MARK: - UITableView
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+
+        return 2
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
 
-        cell.textLabel?.text = "Log Out"
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "Edit Account"
+        case 1:
+            cell.textLabel?.text = "Log Out"
+        default:
+            break
+        }
+
 
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        logOut()
+
+        switch indexPath.row {
+        case 0:
+            showEditUser()
+        case 1:
+            logOut()
+        default:
+            break
+        }
+
+    }
+
+    // MARK: - Actions
+
+    func showEditUser() {
+        performSegueWithIdentifier("showEditUser", sender: self)
     }
     
     func logOut() {
@@ -44,6 +59,16 @@ class AccountController: UITableViewController {
             UserSession.sharedSession.currentUser = nil
 
             self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+    }
+
+    // MARK: - Navigation
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEditUser" {
+            let destViewController = segue.destinationViewController as! EditUserController
+
+            destViewController.userData = EditUserControllerData(user: UserSession.sharedSession.currentUser)
         }
     }
 

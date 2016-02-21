@@ -112,6 +112,36 @@ class API {
     }
 
     /**
+     Update a user account
+
+     - parameter user:       `User` to update
+     - parameter username:   Username
+     - parameter password:   Password (optional; set to nil to skip)
+     - parameter email:      Email
+     - parameter firstName:  First name
+     - parameter lastName:   Last name
+     - parameter completion: `APICompletionClosure`
+     */
+    class func updateUser(user: User, username: String, password: String?, email: String, firstName: String, lastName: String, completion: APICompletionClosure?) {
+
+        var params = [
+            "username": username,
+            "email": email,
+            "firstName": firstName,
+            "lastName": lastName
+        ]
+
+        if let password = password {
+            params["password"] = password
+        }
+
+        Alamofire.request(.PUT, "\(API.BaseURL)/user/\(user.userId)", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+
+            completion?(response)
+        }
+    }
+
+    /**
      Get all user accounts
 
      - parameter completion: `APICompletionClosure`

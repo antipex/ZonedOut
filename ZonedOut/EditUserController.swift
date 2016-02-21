@@ -15,12 +15,23 @@ enum EditUserControllerMode {
 }
 
 struct EditUserControllerData {
+    var userId = 0
     var username = ""
     var email = ""
     var firstName = ""
     var lastName = ""
     var password = ""
     var passwordConfirm = ""
+
+    init(user: User? = nil) {
+        if let user = user {
+            userId = user.userId
+            username = user.username
+            email = user.email
+            firstName = user.firstName
+            lastName = user.lastName
+        }
+    }
 
     var includesPassword: Bool {
         return password.characters.count > 0
@@ -288,7 +299,26 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
     }
 
     func passedValidation() {
-        print("Saving user")
+        guard let user = UserSession.sharedSession.currentUser else {
+            return
+        }
+
+        API.updateUser(user, username: userData.username, password: userData.includesPassword ? userData.password : nil, email: userData.email, firstName: userData.firstName, lastName: userData.lastName) { response in
+
+            switch response.result {
+            case .Success(let rawJSON):
+                let user = User(rawJSON: rawJSON)
+                UserSession.sharedSession.currentUser = user
+
+                SVProgressHUD.showSuccessWithStatus("Account updated successfully")
+
+                self.navigationController?.popViewControllerAnimated(true)
+            case .Failure(let error):
+                let alert = UIAlertController(title: "Could not update account", message: error.localizedDescription, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
     }
 
 }

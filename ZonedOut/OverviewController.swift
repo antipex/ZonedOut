@@ -101,6 +101,8 @@ class OverviewController: UITableViewController {
 
         timeZones.removeAll()
 
+        tableView.reloadData()
+
         guard let _ = UserSession.sharedSession.currentUser else {
             title = ""
 
