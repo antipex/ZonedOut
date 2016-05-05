@@ -108,9 +108,9 @@ class StatusView: UIView {
             )
         }
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSessionStateChanged:", name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StatusView.userSessionStateChanged(_:)), name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
 
-        tapGesture = UITapGestureRecognizer(target: self, action: "tappedStatusView:")
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(StatusView.tappedStatusView(_:)))
 
         addGestureRecognizer(tapGesture)
     }

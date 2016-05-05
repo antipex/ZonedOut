@@ -52,7 +52,7 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        gestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard:")
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditUserController.dismissKeyboard(_:)))
         gestureRecognizer?.cancelsTouchesInView = false
 
         title = mode == .Edit ? "Edit Account" : "Create New Account"

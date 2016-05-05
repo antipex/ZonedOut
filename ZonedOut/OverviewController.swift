@@ -26,10 +26,10 @@ class OverviewController: UITableViewController {
 
         tableView.registerClass(UserCell.self, forCellReuseIdentifier: cellIdentifier)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSessionStateChanged:", name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OverviewController.userSessionStateChanged(_:)), name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(OverviewController.refresh), forControlEvents: .ValueChanged)
 
         let statusView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, navigationController!.navigationBar.frame.size.height))
         statusView.autoresizingMask = [.FlexibleWidth]
