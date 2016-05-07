@@ -21,16 +21,42 @@ class ZonedOutTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFirstCharacter() {
+        let testString = "Foo"
+
+        XCTAssertTrue(testString.firstCharacter == "F", "String.firstCharacter should return F.")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+
+    func testUserProperties() {
+        let testUser = User(
+            userId: 99,
+            username: "artvandelay",
+            email: "artvandelay@antipex.com",
+            firstName: "Art",
+            lastName: "Vandelay",
+            timeZone: NSTimeZone(abbreviation: "PST")
+        )
+
+        XCTAssertTrue(testUser.fullName == "Art Vandelay", "User.fullName should be Art Vandelay")
+        XCTAssertTrue(testUser.initials == "AV", "User.initials should be AV")
+    }
+
+    func testTimeZoneExtensions() {
+        guard let timeZone = NSTimeZone(abbreviation: "PST") else {
+            XCTFail("Could not create a time zone with abbreviation PST")
+            return
         }
+
+        let expectedDisplayName = "America/Los Angeles"
+
+        XCTAssertTrue(timeZone.displayName == expectedDisplayName, "NSTimeZone.displayName should be \(expectedDisplayName)")
     }
     
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measureBlock {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
+
 }
