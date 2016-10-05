@@ -19,7 +19,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         for field in [usernameField!, passwordField!] {
-            field.backgroundColor = UIColor.whiteColor()
+            field.backgroundColor = UIColor.white
             field.layer.cornerRadius = 3.0
         }
     }
@@ -29,16 +29,16 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        navigationController?.navigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
     }
 
     @IBAction func attemptLogin() {
@@ -50,7 +50,7 @@ class LoginController: UIViewController {
             return
         }
 
-        SVProgressHUD.showWithStatus("Logging in...")
+        SVProgressHUD.show(withStatus: "Logging in...")
 
         API.login(username, password: password) { response in
 

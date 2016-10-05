@@ -15,7 +15,7 @@ class BlueButton: UIButton {
 
         backgroundColor = UIColor(hex: 0x235da2)
         layer.cornerRadius = 3.0
-        setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        setTitleColor(UIColor.white, for: UIControlState())
     }
 
 }

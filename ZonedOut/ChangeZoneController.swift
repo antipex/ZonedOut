@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class ChangeZoneController: UITableViewController {
 
-    var timeZones = [String: [NSTimeZone]]()
+    var timeZones = [String: [TimeZone]]()
 
     let cellIdentifier = "zoneCell"
 
@@ -20,19 +20,19 @@ class ChangeZoneController: UITableViewController {
 
         title = "Change Time Zone"
 
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 
-        let allZones = NSTimeZone.knownTimeZoneNames()
+        let allZones = TimeZone.knownTimeZoneIdentifiers
 
         for zone in allZones {
-            let regionComponents = zone.componentsSeparatedByString("/")
+            let regionComponents = zone.components(separatedBy: "/")
             let region = regionComponents[0]
 
             if timeZones[region] == nil {
-                timeZones[region] = [NSTimeZone]()
+                timeZones[region] = [TimeZone]()
             }
 
-            timeZones[region]!.append(NSTimeZone(name: zone)!)
+            timeZones[region]!.append(TimeZone(identifier: zone)!)
         }
     }
 
@@ -41,17 +41,17 @@ class ChangeZoneController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return timeZones.keys.count
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let regions = Array(timeZones.keys)
 
         return regions[section]
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return zonesForSection(section).count
     }
 
@@ -59,30 +59,30 @@ class ChangeZoneController: UITableViewController {
 //        return Array(timeZones.keys)
 //    }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
-        let timeZone = zonesForSection(indexPath.section)[indexPath.row]
+        let timeZone = zonesForSection((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
 
         if let currentTimeZone = UserSession.sharedSession.currentUser?.timeZone {
-            if currentTimeZone.name == timeZone.name {
-                cell.accessoryType = .Checkmark
+            if currentTimeZone.identifier == timeZone.identifier {
+                cell.accessoryType = .checkmark
             }
             else {
-                cell.accessoryType = .None
+                cell.accessoryType = .none
             }
         }
         else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
 
-        cell.textLabel?.text = timeZone.name
+        cell.textLabel?.text = timeZone.identifier
 
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let timeZone = zonesForSection(indexPath.section)[indexPath.row]
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let timeZone = zonesForSection((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
 
         API.updateUserTimeZone(UserSession.sharedSession.currentUser!, timeZone: timeZone) { [unowned self] response in
 
@@ -100,7 +100,7 @@ class ChangeZoneController: UITableViewController {
         }
     }
 
-    func zonesForSection(section: Int) -> [NSTimeZone] {
+    func zonesForSection(_ section: Int) -> [TimeZone] {
         let regions = Array(timeZones.keys)
 
         return timeZones[regions[section]]!

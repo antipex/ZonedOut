@@ -14,15 +14,15 @@ class AccountController: UITableViewController {
 
     // MARK: - UITableView
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return 2
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             cell.textLabel?.text = "Edit Account"
         case 1:
@@ -35,9 +35,9 @@ class AccountController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             showEditUser()
         case 1:
@@ -51,7 +51,7 @@ class AccountController: UITableViewController {
     // MARK: - Actions
 
     func showEditUser() {
-        performSegueWithIdentifier("showEditUser", sender: self)
+        performSegue(withIdentifier: "showEditUser", sender: self)
     }
     
     func logOut() {
@@ -64,9 +64,9 @@ class AccountController: UITableViewController {
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditUser" {
-            let destViewController = segue.destinationViewController as! EditUserController
+            let destViewController = segue.destination as! EditUserController
 
             destViewController.userData = EditUserControllerData(user: UserSession.sharedSession.currentUser)
         }

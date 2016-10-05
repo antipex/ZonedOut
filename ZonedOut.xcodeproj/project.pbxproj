@@ -306,15 +306,18 @@
 					275D10DE1BD0085800D91CC9 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = U2HPM8JL26;
+						LastSwiftMigration = 0800;
 					};
 					275D10F21BD0085800D91CC9 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = D9Z4NMBG5P;
+						LastSwiftMigration = 0800;
 						TestTargetID = 275D10DE1BD0085800D91CC9;
 					};
 					275D10FD1BD0085800D91CC9 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = D9Z4NMBG5P;
+						LastSwiftMigration = 0800;
 						TestTargetID = 275D10DE1BD0085800D91CC9;
 					};
 				};
@@ -585,6 +588,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylerohr.ZonedOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -599,6 +603,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylerohr.ZonedOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -610,6 +615,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylerohr.ZonedOutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZonedOut.app/ZonedOut";
 			};
 			name = Debug;
@@ -622,6 +628,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylerohr.ZonedOutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZonedOut.app/ZonedOut";
 			};
 			name = Release;
@@ -633,6 +640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylerohr.ZonedOutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = ZonedOut;
 				USES_XCTRUNNER = YES;
 			};
@@ -645,6 +653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylerohr.ZonedOutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = ZonedOut;
 				USES_XCTRUNNER = YES;
 			};

@@ -14,7 +14,7 @@ class UserSession: NSObject {
 
     var currentUser: User? {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(ZonedOut.Notification.UserSessionStateChanged, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: ZonedOut.Notification.UserSessionStateChanged), object: nil)
             NSLog("User changed: %@", currentUser != nil ? currentUser! : "nil")
         }
     }

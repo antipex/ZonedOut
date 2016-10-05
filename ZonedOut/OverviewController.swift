@@ -24,25 +24,25 @@ class OverviewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerClass(UserCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellIdentifier)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OverviewController.userSessionStateChanged(_:)), name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OverviewController.userSessionStateChanged(_:)), name: NSNotification.Name(rawValue: ZonedOut.Notification.UserSessionStateChanged), object: nil)
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(OverviewController.refresh), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(OverviewController.refresh), for: .valueChanged)
 
-        let statusView = StatusView(frame: CGRectMake(0.0, 0.0, view.frame.size.width, navigationController!.navigationBar.frame.size.height))
-        statusView.autoresizingMask = [.FlexibleWidth]
+        let statusView = StatusView(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: navigationController!.navigationBar.frame.size.height))
+        statusView.autoresizingMask = [.flexibleWidth]
         navigationItem.titleView = statusView
         statusView.tapHandler = { [unowned self] in
             self.showChangeZone()
         }
 
         if let navigationBar = navigationController?.navigationBar {
-            navigationBar.tintColor = UIColor.whiteColor()
-            navigationBar.translucent = true
+            navigationBar.tintColor = UIColor.white
+            navigationBar.isTranslucent = true
             navigationBar.barTintColor = UIColor(hex: 0x235da2)
-            navigationBar.barStyle = .BlackTranslucent
+            navigationBar.barStyle = .blackTranslucent
         }
 
         API.checkLogin() { [unowned self] response in
@@ -79,8 +79,8 @@ class OverviewController: UITableViewController {
         }
     }
 
-    private func showLogin() {
-        performSegueWithIdentifier("showLogin", sender: self)
+    fileprivate func showLogin() {
+        performSegue(withIdentifier: "showLogin", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,7 +88,7 @@ class OverviewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func userSessionStateChanged(notification: NSNotification) {
+    func userSessionStateChanged(_ notification: Notification) {
         if UserSession.sharedSession.currentUser == nil {
             showLogin()
         }
@@ -123,7 +123,7 @@ class OverviewController: UITableViewController {
         }
     }
 
-    private func parseUserList(rawList: AnyObject) {
+    fileprivate func parseUserList(_ rawList: AnyObject) {
 
         let JSONList = JSON(rawList)
 
@@ -152,69 +152,69 @@ class OverviewController: UITableViewController {
     
     // MARK: UITableView
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let keys = Array(timeZones.keys)
 
         return timeZones[keys[section]]?.count ?? 0
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return timeZones.count
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let keys = Array(timeZones.keys)
 
         return keys[section]
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UserCell.PreferredHeight
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let keys = Array(timeZones.keys)
 
         let zoneName = keys[section]
-        let zone = NSTimeZone(name: zoneName.stringByReplacingOccurrencesOfString(" ", withString: "_"))!
+        let zone = TimeZone(identifier: zoneName.replacingOccurrences(of: " ", with: "_"))!
 
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "EEE, h:mm a"
         formatter.timeZone = zone
-        let formattedDate = formatter.stringFromDate(NSDate())
+        let formattedDate = formatter.string(from: Date())
 
-        let headerView = OverviewHeaderView(frame: CGRectZero)
+        let headerView = OverviewHeaderView(frame: CGRect.zero)
         headerView.titleLabel.text = zoneName
         headerView.timeLabel.text = formattedDate
 
         return headerView
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! UserCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! UserCell
         let keys = Array(timeZones.keys)
 
-        guard let user = timeZones[keys[indexPath.section]]?[indexPath.row] else {
+        guard let user = timeZones[keys[(indexPath as NSIndexPath).section]]?[(indexPath as NSIndexPath).row] else {
             return cell
         }
         
         cell.user = user
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
 
         var index = 1
 
-        for sectionIndex in 0..<indexPath.section {
-            index += tableView.numberOfRowsInSection(sectionIndex)
+        for sectionIndex in 0..<(indexPath as NSIndexPath).section {
+            index += tableView.numberOfRows(inSection: sectionIndex)
         }
 
-        index += indexPath.row
+        index += (indexPath as NSIndexPath).row
         cell.index = index
         
         return cell
     }
 
     func showChangeZone() {
-        performSegueWithIdentifier("showChangeZone", sender: self)
+        performSegue(withIdentifier: "showChangeZone", sender: self)
     }
 
 }

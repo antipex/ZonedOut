@@ -12,7 +12,7 @@ extension String {
 
     /// Returns the first character of the String
     var firstCharacter: String {
-        return self.substringToIndex(self.startIndex.advancedBy(1))
+        return self.substring(to: self.characters.index(self.startIndex, offsetBy: 1))
     }
 
 }

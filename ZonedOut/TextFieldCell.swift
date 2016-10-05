@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TextFieldCellDelegate {
-    func textFieldCell(cell: TextFieldCell, didUpdateValue value: String?)
+    func textFieldCell(_ cell: TextFieldCell, didUpdateValue value: String?)
 }
 
 class TextFieldCell: UITableViewCell, UITextFieldDelegate {
@@ -24,7 +24,7 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
 
     // MARK: - UITextFieldDelegate
 
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.textFieldCell(self, didUpdateValue: textField.text)
     }
 

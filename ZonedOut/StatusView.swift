@@ -9,7 +9,7 @@
 import UIKit
 
 protocol StatusViewDelegate {
-    func statusViewDidTap(statusView: StatusView)
+    func statusViewDidTap(_ statusView: StatusView)
 }
 
 class StatusView: UIView {
@@ -27,13 +27,13 @@ class StatusView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
 
-        infoLabel.text = "I'm Currently In".uppercaseString
-        infoLabel.font = UIFont.systemFontOfSize(10.0, weight: UIFontWeightLight)
-        infoLabel.textColor = UIColor.whiteColor()
-        timeZoneLabel.font = UIFont.systemFontOfSize(14.0, weight: UIFontWeightSemibold)
-        timeZoneLabel.textColor = UIColor.whiteColor()
+        infoLabel.text = "I'm Currently In".uppercased()
+        infoLabel.font = UIFont.systemFont(ofSize: 10.0, weight: UIFontWeightLight)
+        infoLabel.textColor = UIColor.white
+        timeZoneLabel.font = UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightSemibold)
+        timeZoneLabel.textColor = UIColor.white
 
         // Auto Layout
 
@@ -64,8 +64,8 @@ class StatusView: UIView {
         ]
 
         for format in formats {
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-                format,
+            addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: format,
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: metrics,
                 views: views)
@@ -74,10 +74,10 @@ class StatusView: UIView {
 
         addConstraint(NSLayoutConstraint(
             item: iconView,
-            attribute: .CenterY,
-            relatedBy: .Equal,
+            attribute: .centerY,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .CenterY,
+            attribute: .centerY,
             multiplier: 1.0,
             constant: 0.0)
         )
@@ -100,15 +100,15 @@ class StatusView: UIView {
         ]
 
         for format in containerFormats {
-            contentContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-                format,
+            contentContainer.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: format,
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: containerMetrics,
                 views: containerViews)
             )
         }
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StatusView.userSessionStateChanged(_:)), name: ZonedOut.Notification.UserSessionStateChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(StatusView.userSessionStateChanged(_:)), name: NSNotification.Name(rawValue: ZonedOut.Notification.UserSessionStateChanged), object: nil)
 
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(StatusView.tappedStatusView(_:)))
 
@@ -120,12 +120,12 @@ class StatusView: UIView {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
 
         removeGestureRecognizer(tapGesture)
     }
 
-    func userSessionStateChanged(notification: NSNotification) {
+    func userSessionStateChanged(_ notification: Notification) {
         refresh()
     }
 
@@ -141,7 +141,7 @@ class StatusView: UIView {
         timeZoneLabel.text = currentUser.timeZone?.displayName
     }
 
-    func tappedStatusView(recognizer: UITapGestureRecognizer) {
+    func tappedStatusView(_ recognizer: UITapGestureRecognizer) {
         tapHandler?()
     }
 

@@ -12,7 +12,7 @@ import SVProgressHUD
 class AddUserController: EditUserController {
 
     override func viewDidLoad() {
-        mode = .Add
+        mode = .add
 
         super.viewDidLoad()
     }

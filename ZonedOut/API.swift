@@ -23,7 +23,7 @@ class API {
      - parameter userId:     User ID to fetch
      - parameter completion: `APICompletionClosure`
      */
-    class func getUser(userId: Int, completion: APICompletionClosure?) {
+    class func getUser(_ userId: Int, completion: APICompletionClosure?) {
         return API.getUser(userId, username: nil, completion: completion)
     }
 
@@ -33,7 +33,7 @@ class API {
      - parameter username:   Username to fetch
      - parameter completion: `APICompletionClosure`
      */
-    class func getUser(username: String, completion: APICompletionClosure?) {
+    class func getUser(_ username: String, completion: APICompletionClosure?) {
         return API.getUser(nil, username: username, completion: completion)
     }
 
@@ -44,15 +44,15 @@ class API {
      - parameter username:   Username to fetch
      - parameter completion: `APICompletionClosure`
      */
-    class func getUser(userId: Int?, username: String?, completion: APICompletionClosure?) {
+    class func getUser(_ userId: Int?, username: String?, completion: APICompletionClosure?) {
         var params = [String: AnyObject]()
         
         if let userId = userId {
-            params["id"] = userId
+            params["id"] = userId as AnyObject?
         }
         
         if let username = username {
-            params["username"] = username
+            params["username"] = username as AnyObject?
         }
         
         Alamofire.request(.GET, "\(API.BaseURL)/user", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
@@ -72,7 +72,7 @@ class API {
      - parameter timeZoneName: Time zone name
      - parameter completion:   `APICompletionClosure`
      */
-    class func addUser(username: String, password: String, email: String, firstName: String, lastName: String, timeZoneName: String? = nil, completion: APICompletionClosure?) {
+    class func addUser(_ username: String, password: String, email: String, firstName: String, lastName: String, timeZoneName: String? = nil, completion: APICompletionClosure?) {
         
         var params = [
             "username": username,
@@ -100,9 +100,9 @@ class API {
      - parameter timeZone:   New time zone
      - parameter completion: `APICompletionClosure`
      */
-    class func updateUserTimeZone(user: User, timeZone: NSTimeZone, completion: APICompletionClosure?) {
+    class func updateUserTimeZone(_ user: User, timeZone: TimeZone, completion: APICompletionClosure?) {
         let params = [
-            "timeZoneName": timeZone.name
+            "timeZoneName": timeZone.identifier
         ]
 
         Alamofire.request(.PUT, "\(API.BaseURL)/user/\(user.userId)", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
@@ -122,7 +122,7 @@ class API {
      - parameter lastName:   Last name
      - parameter completion: `APICompletionClosure`
      */
-    class func updateUser(user: User, username: String, password: String?, email: String, firstName: String, lastName: String, completion: APICompletionClosure?) {
+    class func updateUser(_ user: User, username: String, password: String?, email: String, firstName: String, lastName: String, completion: APICompletionClosure?) {
 
         var params = [
             "username": username,
@@ -146,7 +146,7 @@ class API {
 
      - parameter completion: `APICompletionClosure`
      */
-    class func getAllUsers(completion: APICompletionClosure?) {
+    class func getAllUsers(_ completion: APICompletionClosure?) {
         Alamofire.request(.GET, "\(API.BaseURL)/users").responseJSON { response in
 
             completion?(response)
@@ -158,7 +158,7 @@ class API {
 
      - parameter completion: `APICompletionClosure`
      */
-    class func checkLogin(completion: APICompletionClosure?) {
+    class func checkLogin(_ completion: APICompletionClosure?) {
         Alamofire.request(.GET, "\(API.BaseURL)/user").responseJSON { response in
 
             completion?(response)
@@ -172,7 +172,7 @@ class API {
      - parameter password:   Password
      - parameter completion: `APICompletionClosure`
      */
-    class func login(username: String, password: String, completion: APICompletionClosure?) {
+    class func login(_ username: String, password: String, completion: APICompletionClosure?) {
         let params = [
             "username": username,
             "password": password
@@ -189,7 +189,7 @@ class API {
 
      - parameter completion: `APICompletionClosure`
      */
-    class func logout(completion: APICompletionClosure?) {
+    class func logout(_ completion: APICompletionClosure?) {
         Alamofire.request(.POST, "\(API.BaseURL)/user/logout").responseJSON { response in
 
             completion?(response)

@@ -16,8 +16,8 @@ class OverviewHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        titleLabel.font = UIFont.systemFontOfSize(12.0, weight: UIFontWeightBlack)
-        timeLabel.font = UIFont.systemFontOfSize(12.0, weight: UIFontWeightLight)
+        titleLabel.font = UIFont.systemFont(ofSize: 12.0, weight: UIFontWeightBlack)
+        timeLabel.font = UIFont.systemFont(ofSize: 12.0, weight: UIFontWeightLight)
 
         for subview in [titleLabel, timeLabel] {
             subview.translatesAutoresizingMaskIntoConstraints = false
@@ -42,8 +42,8 @@ class OverviewHeaderView: UIView {
         ]
 
         for format in formats {
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-                format,
+            addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: format,
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: metrics,
                 views: views)

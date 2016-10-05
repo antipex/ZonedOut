@@ -10,8 +10,8 @@ import UIKit
 import SVProgressHUD
 
 enum EditUserControllerMode {
-    case Edit
-    case Add
+    case edit
+    case add
 }
 
 struct EditUserControllerData {
@@ -40,7 +40,7 @@ struct EditUserControllerData {
 
 class EditUserController: UITableViewController, TextFieldCellDelegate {
 
-    var mode: EditUserControllerMode = .Edit
+    var mode: EditUserControllerMode = .edit
 
     var userData = EditUserControllerData()
 
@@ -55,14 +55,14 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditUserController.dismissKeyboard(_:)))
         gestureRecognizer?.cancelsTouchesInView = false
 
-        title = mode == .Edit ? "Edit Account" : "Create New Account"
+        title = mode == .edit ? "Edit Account" : "Create New Account"
 
 //        tableView.allowsSelection = false
 
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.barTintColor = UIColor(hex: 0x235da2)
-            navigationBar.barStyle = .BlackTranslucent
-            navigationBar.tintColor = UIColor.whiteColor()
+            navigationBar.barStyle = .blackTranslucent
+            navigationBar.tintColor = UIColor.white
         }
     }
 
@@ -71,13 +71,13 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         view.addGestureRecognizer(gestureRecognizer)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         view.removeGestureRecognizer(gestureRecognizer)
@@ -85,56 +85,56 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
 
     // MARK: - UITableView
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         return ["", "", ""][section]
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return [4, 2, 1][section]
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell: UITableViewCell
 
-        if indexPath.section < 2 {
-            cell = tableView.dequeueReusableCellWithIdentifier(textFieldReuseIdentifier, forIndexPath: indexPath) as! TextFieldCell
+        if (indexPath as NSIndexPath).section < 2 {
+            cell = tableView.dequeueReusableCell(withIdentifier: textFieldReuseIdentifier, for: indexPath) as! TextFieldCell
         }
         else {
-            cell = tableView.dequeueReusableCellWithIdentifier(buttonReuseIdentifier, forIndexPath: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: buttonReuseIdentifier, for: indexPath)
         }
 
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             let cell = cell as! TextFieldCell
             cell.delegate = self
 
-            cell.textField.secureTextEntry = false
-            cell.textField.autocorrectionType = .No
+            cell.textField.isSecureTextEntry = false
+            cell.textField.autocorrectionType = .no
 
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 cell.textField.placeholder = "Username"
                 cell.textField.text = userData.username
-                cell.textField.autocapitalizationType = .None
+                cell.textField.autocapitalizationType = .none
             case 1:
                 cell.textField.placeholder = "Email"
                 cell.textField.text = userData.email
-                cell.textField.keyboardType = .EmailAddress
+                cell.textField.keyboardType = .emailAddress
             case 2:
                 cell.textField.placeholder = "First Name"
                 cell.textField.text = userData.firstName
-                cell.textField.autocapitalizationType = .Words
+                cell.textField.autocapitalizationType = .words
             case 3:
                 cell.textField.placeholder = "Last Name"
                 cell.textField.text = userData.lastName
-                cell.textField.autocapitalizationType = .Words
+                cell.textField.autocapitalizationType = .words
             default:
                 break
             }
@@ -142,9 +142,9 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
             let cell = cell as! TextFieldCell
             cell.delegate = self
 
-            cell.textField.secureTextEntry = true
+            cell.textField.isSecureTextEntry = true
             
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 cell.textField.placeholder = "Password"
             case 1:
@@ -153,9 +153,9 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
                 break
             }
         case 2:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
-                cell.textLabel?.text = mode == .Edit ? "Save Changes" : "Create Account"
+                cell.textLabel?.text = mode == .edit ? "Save Changes" : "Create Account"
             default:
                 break
             }
@@ -166,18 +166,18 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
         return cell
     }
 
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
 
-        return [false, false, true][indexPath.section]
+        return [false, false, true][(indexPath as NSIndexPath).section]
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
 
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 2:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 tappedButton()
             default:
@@ -190,14 +190,14 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
 
     // MARK: - TextFieldCellDelegate
 
-    func textFieldCell(cell: TextFieldCell, didUpdateValue value: String?) {
-        guard let indexPath = tableView.indexPathForCell(cell) else {
+    func textFieldCell(_ cell: TextFieldCell, didUpdateValue value: String?) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
             return
         }
 
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 userData.username = value ?? ""
             case 1:
@@ -210,7 +210,7 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
                 break
             }
         case 1:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 userData.password = value ?? ""
             case 1:
@@ -255,7 +255,7 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
             }
         }
 
-        if mode == .Add {
+        if mode == .add {
             if !userData.includesPassword {
                 errorStrings.append("Password is required")
             }
@@ -273,25 +273,25 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
 
     // MARK: - Actions
 
-    func dismissKeyboard(sender: UITapGestureRecognizer) {
+    func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
 
-    private func tappedButton() {
+    fileprivate func tappedButton() {
         if let errorStrings = validateFields() {
             let alert = UIAlertController(
                 title: "Error",
-                message: errorStrings.joinWithSeparator("\n"),
-                preferredStyle: .Alert
+                message: errorStrings.joined(separator: "\n"),
+                preferredStyle: .alert
             )
 
             alert.addAction(UIAlertAction(
                 title: "OK",
-                style: .Cancel,
+                style: .cancel,
                 handler: nil)
             )
 
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
         else {
             passedValidation()

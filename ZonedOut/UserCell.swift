@@ -32,15 +32,15 @@ class UserCell: UITableViewCell {
 
         // Auto Layout
 
-        for view in [iconView, fullNameLabel] {
-            view.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(view)
+        for view in [iconView, fullNameLabel] as [Any] {
+            (view as AnyObject).translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(view as! UIView)
         }
         
         let views = [
             "fullNameLabel": fullNameLabel,
             "iconView": iconView
-        ]
+        ] as [String : Any]
         
         let metrics = [
             "iconSize": 44.0
@@ -53,8 +53,8 @@ class UserCell: UITableViewCell {
         ]
         
         for format in formats {
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-                format,
+            contentView.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: format,
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: metrics,
                 views: views)

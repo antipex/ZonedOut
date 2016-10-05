@@ -26,7 +26,7 @@ class UserIconView: UIView {
     }
 
     init(radius: CGFloat, index: Int = 0) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
 
         nameLabel.text = "UN"
         
@@ -35,9 +35,9 @@ class UserIconView: UIView {
         refreshBackgroundColor()
         layer.cornerRadius = radius
         
-        nameLabel.font = UIFont.systemFontOfSize(0.81 * radius, weight: UIFontWeightBold)
-        nameLabel.textColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.8)
-        nameLabel.textAlignment = .Center
+        nameLabel.font = UIFont.systemFont(ofSize: 0.81 * radius, weight: UIFontWeightBold)
+        nameLabel.textColor = UIColor.darkGray.withAlphaComponent(0.8)
+        nameLabel.textAlignment = .center
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameLabel)
         
@@ -50,8 +50,8 @@ class UserIconView: UIView {
         ]
         
         for format in formats {
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-                format,
+            addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: format,
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views)

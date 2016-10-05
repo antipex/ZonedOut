@@ -16,7 +16,7 @@ class User: NSObject {
     var email: String
     var firstName: String
     var lastName: String
-    var timeZone: NSTimeZone?
+    var timeZone: TimeZone?
 
     /// First and last name separated by a space
     var fullName: String {
@@ -32,7 +32,7 @@ class User: NSObject {
     }
     
     override var description: String {
-        return "<User username=\(username), name=\(fullName), timeZone=\(timeZone?.name)>"
+        return "<User username=\(username), name=\(fullName), timeZone=\(timeZone?.identifier)>"
     }
 
     /**
@@ -47,7 +47,7 @@ class User: NSObject {
 
      - returns: A new instance of `User`
      */
-    init(userId: Int, username: String, email: String, firstName: String, lastName: String, timeZone: NSTimeZone?) {
+    init(userId: Int, username: String, email: String, firstName: String, lastName: String, timeZone: TimeZone?) {
         self.userId = userId
         self.username = username
         self.email = email

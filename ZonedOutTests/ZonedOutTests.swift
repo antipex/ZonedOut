@@ -34,7 +34,7 @@ class ZonedOutTests: XCTestCase {
             email: "artvandelay@antipex.com",
             firstName: "Art",
             lastName: "Vandelay",
-            timeZone: NSTimeZone(abbreviation: "PST")
+            timeZone: TimeZone(abbreviation: "PST")
         )
 
         XCTAssertTrue(testUser.fullName == "Art Vandelay", "User.fullName should be Art Vandelay")
@@ -42,7 +42,7 @@ class ZonedOutTests: XCTestCase {
     }
 
     func testTimeZoneExtensions() {
-        guard let timeZone = NSTimeZone(abbreviation: "PST") else {
+        guard let timeZone = TimeZone(abbreviation: "PST") else {
             XCTFail("Could not create a time zone with abbreviation PST")
             return
         }
