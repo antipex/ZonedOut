@@ -57,27 +57,30 @@ class LoginController: UIViewController {
             SVProgressHUD.dismiss()
 
             switch response.result {
-            case .Success(let rawJSON):
+            case .success(let rawJSON):
+                print("#: \(rawJSON)")
                 guard let statusCode = response.response?.statusCode else {
                     break
                 }
 
                 if statusCode == 401 {
-                    let alert = UIAlertController(title: "Error Logging In", message: rawJSON["message"] as? String, preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    let json = JSON(rawJSON)
+
+                    let alert = UIAlertController(title: "Error Logging In", message: json["message"].string, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
                 else {
                     let user = User(rawJSON: rawJSON)
 
                     UserSession.sharedSession.currentUser = user
 
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
-            case .Failure(let error):
-                let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+            case .failure(let error):
+                let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

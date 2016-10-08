@@ -306,17 +306,17 @@ class EditUserController: UITableViewController, TextFieldCellDelegate {
         API.updateUser(user, username: userData.username, password: userData.includesPassword ? userData.password : nil, email: userData.email, firstName: userData.firstName, lastName: userData.lastName) { response in
 
             switch response.result {
-            case .Success(let rawJSON):
+            case .success(let rawJSON):
                 let user = User(rawJSON: rawJSON)
                 UserSession.sharedSession.currentUser = user
 
-                SVProgressHUD.showSuccessWithStatus("Account updated successfully")
+                SVProgressHUD.showSuccess(withStatus: "Account updated successfully")
 
-                self.navigationController?.popViewControllerAnimated(true)
-            case .Failure(let error):
-                let alert = UIAlertController(title: "Could not update account", message: error.localizedDescription, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            case .failure(let error):
+                let alert = UIAlertController(title: "Could not update account", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

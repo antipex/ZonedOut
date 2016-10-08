@@ -47,7 +47,7 @@ class OverviewController: UITableViewController {
 
         API.checkLogin() { [unowned self] response in
             switch response.result {
-            case .Success(let rawJSON):
+            case .success(let rawJSON):
                 if let statusCode = response.response?.statusCode {
                     if statusCode == 401 {
                         // Not logged in yet, so show login
@@ -69,7 +69,7 @@ class OverviewController: UITableViewController {
                 else {
                     self.showLogin()
                 }
-            case .Failure:
+            case .failure:
                 self.showLogin()
 
                 //let alert = UIAlertController(title: "Error Logging In", message: error.localizedDescription, preferredStyle: .Alert)
@@ -111,19 +111,19 @@ class OverviewController: UITableViewController {
 
         API.getAllUsers() { [unowned self] response in
             switch response.result {
-            case .Success(let rawList):
+            case .success(let rawList):
                 self.parseUserList(rawList)
-            case .Failure(let error):
+            case .failure(let error):
                 self.refreshControl?.endRefreshing()
 
-                let alert = UIAlertController(title: "Error Loading Users", message: error.localizedDescription, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Error Loading Users", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
 
-    fileprivate func parseUserList(_ rawList: AnyObject) {
+    fileprivate func parseUserList(_ rawList: Any) {
 
         let JSONList = JSON(rawList)
 

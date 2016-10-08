@@ -87,14 +87,14 @@ class ChangeZoneController: UITableViewController {
         API.updateUserTimeZone(UserSession.sharedSession.currentUser!, timeZone: timeZone) { [unowned self] response in
 
             switch response.result {
-            case .Success(let rawJSON):
+            case .success(let rawJSON):
                 let user = User(rawJSON: rawJSON)
 
                 UserSession.sharedSession.currentUser = user
 
-                self.navigationController?.popViewControllerAnimated(true)
-            case .Failure(let error):
-                SVProgressHUD.showErrorWithStatus("An error occurred while updating the time zone.")
+                self.navigationController?.popViewController(animated: true)
+            case .failure(let error):
+                SVProgressHUD.showError(withStatus: "An error occurred while updating the time zone.")
                 print("Error updating time zone: \(error.localizedDescription)")
             }
         }

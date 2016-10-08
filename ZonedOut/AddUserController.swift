@@ -23,17 +23,17 @@ class AddUserController: EditUserController {
         API.addUser(userData.username, password: userData.password, email: userData.email, firstName: userData.firstName, lastName: userData.lastName) { response in
 
             switch response.result {
-            case .Success(let rawJSON):
+            case .success(let rawJSON):
                 let user = User(rawJSON: rawJSON)
                 UserSession.sharedSession.currentUser = user
 
-                SVProgressHUD.showSuccessWithStatus("Account created successfully")
+                SVProgressHUD.showSuccess(withStatus: "Account created successfully")
 
-                self.dismissViewControllerAnimated(true, completion: nil)
-            case .Failure(let error):
-                let alert = UIAlertController(title: "Could not create account", message: error.localizedDescription, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                let alert = UIAlertController(title: "Could not create account", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

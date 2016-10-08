@@ -32,9 +32,9 @@ class UserCell: UITableViewCell {
 
         // Auto Layout
 
-        for view in [iconView, fullNameLabel] as [Any] {
-            (view as AnyObject).translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(view as! UIView)
+        for view in [iconView, fullNameLabel] as [UIView] {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(view)
         }
         
         let views = [

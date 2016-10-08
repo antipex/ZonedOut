@@ -58,7 +58,7 @@ class AccountController: UITableViewController {
         API.logout() { [unowned self] response in
             UserSession.sharedSession.currentUser = nil
 
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
 

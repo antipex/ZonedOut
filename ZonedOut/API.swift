@@ -15,7 +15,7 @@ class API {
     /// Base URL for API requests without trailing slash
     static let BaseURL = "http://zonedout.antipex.com"
 
-    typealias APICompletionClosure = (Response<AnyObject, NSError>) -> Void
+    typealias APICompletionClosure = (DataResponse<Any>) -> Void
 
     /**
      Fetch a user account by ID
@@ -54,8 +54,9 @@ class API {
         if let username = username {
             params["username"] = username as AnyObject?
         }
-        
-        Alamofire.request(.GET, "\(API.BaseURL)/user", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+
+
+        Alamofire.request("\(API.BaseURL)/user", method: .get, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
 
             completion?(response)
         }
@@ -85,8 +86,8 @@ class API {
         if let timeZoneName = timeZoneName {
             params["timeZoneName"] = timeZoneName
         }
-        
-        Alamofire.request(.POST, "\(API.BaseURL)/user", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+
+        Alamofire.request("\(API.BaseURL)/user", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
 
             completion?(response)
         }
@@ -105,7 +106,7 @@ class API {
             "timeZoneName": timeZone.identifier
         ]
 
-        Alamofire.request(.PUT, "\(API.BaseURL)/user/\(user.userId)", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+        Alamofire.request("\(API.BaseURL)/user/\(user.userId)", method: .put, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
 
             completion?(response)
         }
@@ -135,7 +136,7 @@ class API {
             params["password"] = password
         }
 
-        Alamofire.request(.PUT, "\(API.BaseURL)/user/\(user.userId)", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+        Alamofire.request("\(API.BaseURL)/user/\(user.userId)", method: .put, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
 
             completion?(response)
         }
@@ -147,7 +148,7 @@ class API {
      - parameter completion: `APICompletionClosure`
      */
     class func getAllUsers(_ completion: APICompletionClosure?) {
-        Alamofire.request(.GET, "\(API.BaseURL)/users").responseJSON { response in
+        Alamofire.request("\(API.BaseURL)/users").responseJSON { response in
 
             completion?(response)
         }
@@ -159,7 +160,7 @@ class API {
      - parameter completion: `APICompletionClosure`
      */
     class func checkLogin(_ completion: APICompletionClosure?) {
-        Alamofire.request(.GET, "\(API.BaseURL)/user").responseJSON { response in
+        Alamofire.request("\(API.BaseURL)/user").responseJSON { response in
 
             completion?(response)
         }
@@ -178,7 +179,7 @@ class API {
             "password": password
         ]
 
-        Alamofire.request(.POST, "\(API.BaseURL)/user/login", parameters: params, encoding: .JSON, headers: nil).responseJSON { response in
+        Alamofire.request("\(API.BaseURL)/user/login", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
 
             completion?(response)
         }
@@ -190,7 +191,7 @@ class API {
      - parameter completion: `APICompletionClosure`
      */
     class func logout(_ completion: APICompletionClosure?) {
-        Alamofire.request(.POST, "\(API.BaseURL)/user/logout").responseJSON { response in
+        Alamofire.request("\(API.BaseURL)/user/logout", method: .post).responseJSON { response in
 
             completion?(response)
         }

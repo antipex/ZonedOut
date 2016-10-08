@@ -65,7 +65,7 @@ class User: NSObject {
 
      - returns: A new instance of `User`
      */
-    convenience init(rawJSON: AnyObject) {
+    convenience init(rawJSON: Any) {
         let JSONUser = JSON(rawJSON)
 
         self.init(JSONUser: JSONUser)
@@ -84,7 +84,7 @@ class User: NSObject {
         email = JSONUser["email"].stringValue
         firstName = JSONUser["firstName"].stringValue
         lastName = JSONUser["lastName"].stringValue
-        timeZone = JSONUser["timeZoneName"].string != nil ? NSTimeZone(name: JSONUser["timeZoneName"].stringValue) : nil
+        timeZone = JSONUser["timeZoneName"].string != nil ? TimeZone(identifier: JSONUser["timeZoneName"].stringValue) : nil
 
         super.init()
     }
